@@ -77,7 +77,7 @@ namespace Microsoft.AspNetCore.Components.E2ETest.ServerExecutionTests
             display = Browser.FindElement(By.Id("input_type_text_datetime_value"));
             Browser.Equal(new DateTime(1985, 3, 4).ToString(cultureInfo), () => display.Text);
 
-            ReplaceText(input, new DateTime(2000, 1, 2).ToString(cultureInfo));
+            input.ReplaceText(new DateTime(2000, 1, 2).ToString(cultureInfo));
             input.SendKeys("\t");
             Browser.Equal(new DateTime(2000, 1, 2).ToString(cultureInfo), () => display.Text);
 
@@ -86,7 +86,7 @@ namespace Microsoft.AspNetCore.Components.E2ETest.ServerExecutionTests
             display = Browser.FindElement(By.Id("input_type_text_datetimeoffset_value"));
             Browser.Equal(new DateTimeOffset(new DateTime(1985, 3, 4)).ToString(cultureInfo), () => display.Text);
 
-            ReplaceText(input, new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo));
+            input.ReplaceText(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo));
             input.SendKeys("\t");
             Browser.Equal(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo), () => display.Text);
         }
@@ -155,7 +155,7 @@ namespace Microsoft.AspNetCore.Components.E2ETest.ServerExecutionTests
             Browser.Equal(new DateTime(1985, 3, 4).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTime(1985, 3, 4).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
 
-            ReplaceText(extraInput, new DateTime(2000, 1, 2).ToString(cultureInfo));
+            extraInput.ReplaceText(new DateTime(2000, 1, 2).ToString(cultureInfo));
             extraInput.SendKeys("\t");
             Browser.Equal(new DateTime(2000, 1, 2).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTime(2000, 1, 2).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
@@ -167,7 +167,7 @@ namespace Microsoft.AspNetCore.Components.E2ETest.ServerExecutionTests
             Browser.Equal(new DateTimeOffset(new DateTime(1985, 3, 4)).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTimeOffset(new DateTime(1985, 3, 4)).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
 
-            ReplaceText(extraInput, new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo));
+            extraInput.ReplaceText(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo));
             extraInput.SendKeys("\t");
             Browser.Equal(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
@@ -221,7 +221,7 @@ namespace Microsoft.AspNetCore.Components.E2ETest.ServerExecutionTests
             Browser.Equal(new DateTime(1985, 3, 4).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTime(1985, 3, 4).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
 
-            ReplaceText(extraInput, new DateTime(2000, 1, 2).ToString(cultureInfo));
+            extraInput.ReplaceText(new DateTime(2000, 1, 2).ToString(cultureInfo));
             extraInput.SendKeys("\t");
             Browser.Equal(new DateTime(2000, 1, 2).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTime(2000, 1, 2).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
@@ -233,19 +233,10 @@ namespace Microsoft.AspNetCore.Components.E2ETest.ServerExecutionTests
             Browser.Equal(new DateTimeOffset(new DateTime(1985, 3, 4)).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTimeOffset(new DateTime(1985, 3, 4)).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
 
-            ReplaceText(extraInput, new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo));
+            extraInput.ReplaceText(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo));
             extraInput.SendKeys("\t");
             Browser.Equal(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString(cultureInfo), () => display.Text);
             Browser.Equal(new DateTimeOffset(new DateTime(2000, 1, 2)).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), () => input.GetAttribute("value"));
-        }
-
-        // see: https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/214
-        //
-        // Calling Clear() can trigger onchange, which will revert the value to its default.
-        private static void ReplaceText(IWebElement element, string text)
-        {
-            element.SendKeys(Keys.Control + "a");
-            element.SendKeys(text);
         }
     }
 }

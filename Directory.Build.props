@@ -53,6 +53,8 @@
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CS1591</WarningsNotAsErrors>
     <!-- xUnit1004 = warns about skipped tests. Make this a non-fatal build warning. -->
     <WarningsNotAsErrors>$(WarningsNotAsErrors);xUnit1004</WarningsNotAsErrors>
+    <!-- NU5048 = warns about deprecated PackageIconUrl. Ignore this warning while we evaluate how to migrate to PackageIcon. -->
+    <NoWarn>$(NoWarn);NU5048</NoWarn>
   </PropertyGroup>
 
   <!-- Source code settings -->

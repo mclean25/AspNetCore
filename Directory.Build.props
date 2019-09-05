@@ -48,13 +48,11 @@
 
   <!-- Warnings and errors -->
   <PropertyGroup>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <!-- Don't make missing XML docs a fatal build error, but still surface so we have visibility into undocumented APIs. -->
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CS1591</WarningsNotAsErrors>
     <!-- xUnit1004 = warns about skipped tests. Make this a non-fatal build warning. -->
     <WarningsNotAsErrors>$(WarningsNotAsErrors);xUnit1004</WarningsNotAsErrors>
-    <!-- NU5048 = warns about deprecated PackageIconUrl property. We are still using this so make this a non-fatal build warning. -->
-    <WarningsNotAsErrors>$(WarningsNotAsErrors);NU5048</WarningsNotAsErrors>
   </PropertyGroup>
 
   <!-- Source code settings -->
